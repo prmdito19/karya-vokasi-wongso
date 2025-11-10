@@ -43,7 +43,7 @@ export default function Home() {
 
     return (
         <div>
-            <div>
+            <div className="mt-8">
                 <HeroSection
                     title={wongsoLogo}
                     subtitle="Karya Vokasi LMS"

@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from "@headlessui/react";
 import {
   Bars3Icon,
   XMarkIcon,
@@ -12,13 +16,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AppButton } from "@/components/ui/button";
 import "@/index.css";
 
-import wongso from "@/assets/images/wongso.png"
-import pelajar from "@/assets/images/pelajar.png"
+import wongso from "@/assets/images/wongso.png";
+import pelajar from "@/assets/images/pelajar.png";
 
 const navigation = [
   { name: "BERANDA", href: "/" },
   { name: "TENTANG KAMI", href: "/tentang-kami" },
   { name: "KONTAK", href: "/kontak" },
+  { name: "PAKET", href: "/katalog" },
 ];
 
 function classNames(...classes: (string | false | null | undefined)[]): string {
@@ -76,8 +81,8 @@ export default function Navbar() {
       {({ open }) => (
         <>
           {/* NAVBAR */}
-          <div className="mx-5 md:mx-10 lg:mx-[120px] w-full">
-            <div className="flex h-16 items-center justify-between">
+          <div className="px-5 md:px-10 lg:px-[120px] w-full shadow-lg">
+            <div className="flex h-20 items-center justify-between">
               {/* Logo */}
               <div className="flex items-center">
                 <Link to="/">
@@ -102,8 +107,8 @@ export default function Navbar() {
                             aria-current={isActive ? "page" : undefined}
                             className={classNames(
                               isActive
-                                ? 'relative font-bold text-[16px] text-[#4BD270] after:content-[""] after:absolute after:left-0 after:-bottom-[22px] after:h-[2px] after:w-full after:bg-[#4BD270]'
-                                : 'relative font-bold text-[16px] text-[#3A3A3A] hover:text-[#4BD270] hover:after:content-[""] hover:after:absolute hover:after:left-0 hover:after:-bottom-[22px] hover:after:h-[2px] hover:after:w-full hover:after:bg-[#4BD270]'
+                                ? 'relative font-bold text-[16px] text-[#4BD270] after:content-[""] after:absolute after:left-0 after:-bottom-[22px] after:h-0.5 after:w-full after:bg-[#4BD270]'
+                                : 'relative font-bold text-[16px] text-[#3A3A3A] hover:text-[#4BD270] hover:after:content-[""] hover:after:absolute hover:after:left-0 hover:after:-bottom-[22px] hover:after:h-0.5 hover:after:w-full hover:after:bg-[#4BD270]'
                             )}
                           >
                             {item.name}
@@ -136,7 +141,7 @@ export default function Navbar() {
                     {dropdownOpen && (
                       <div
                         id="userDropdown"
-                        className="absolute right-0 mt-3 w-60 bg-white rounded-2xl shadow-lg border border-gray-100 z-[101] overflow-hidden"
+                        className="absolute right-0 mt-3 w-60 bg-white rounded-2xl shadow-lg border border-gray-100 z-101 overflow-hidden"
                       >
                         {/* header */}
                         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
@@ -206,7 +211,7 @@ export default function Navbar() {
                   </div>
                 ) : (
                   <>
-                    <div className="mr-[24px]">
+                    <div className="mr-6">
                       <AppButton
                         onClick={() => navigate("/register")}
                         label="Daftar"
@@ -254,7 +259,7 @@ export default function Navbar() {
           {/* MOBILE PANEL (z-index tertinggi) */}
           <DisclosurePanel
             static
-            className={`min-[769px]:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-[9999] ${
+            className={`min-[769px]:hidden fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-9999 ${
               open ? "translate-x-0" : "translate-x-full"
             }`}
           >
@@ -285,7 +290,9 @@ export default function Navbar() {
               <div className="flex flex-col space-y-2 mb-[50px]">
                 {user ? (
                   <>
-                    <p className="text-sm text-gray-700 font-medium">{user.name}</p>
+                    <p className="text-sm text-gray-700 font-medium">
+                      {user.name}
+                    </p>
                     <button
                       onClick={handleLogout}
                       className="w-full px-5 py-2 text-center rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 transition"
